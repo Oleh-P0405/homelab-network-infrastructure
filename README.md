@@ -92,3 +92,16 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
 - [ ] Erstellung von Gruppenrichtlinien (**Group Policy Objects / GPO**) im Active Directory.
 - [ ] Einrichten von Netzwerkfreigaben (SMB / Dateiserver) mit Zugriffssteuerung.
 
+## 🛠️ Phase 3: Linux-Integration & Fernverwaltung (SSH)
+
+1. **Netzwerk- & DNS-Konfiguration (Ubuntu Server):**
+   * Anpassung der Netplan-Konfiguration (`/etc/netplan/00-installer-config.yaml`) auf `SRV-LNX-01` mit statischer IP-Adresse (`192.168.10.10/24`) und Zuweisung des Domänen-DNS-Servers (`192.168.10.20`).
+   * Erstellung eines **A-Records** und **PTR-Records** in der Forward-Lookupzone der Windows-DNS-Verwaltung für den Host `srv-lnx-01.lab.local`.
+
+<img width="1280" height="800" alt="SSH,LinuxVirtualBox_SRV-LNX-01_28_09_2026_00_13_12" src="https://github.com/user-attachments/assets/d8aa33be-0c73-405e-ac7f-db33ba83bfaa" />
+
+2. **SSH-Fernverwaltung:**
+   * Aktivierung und Start des OpenSSH-Dienstes (`openssh-server`) auf Ubuntu.
+   * Erfolgreiche Fernverbindung via SSH über die Windows PowerShell von `CLI-WIN-01` aus (`ssh user@srv-lnx-01.lab.local`).
+<img width="1024" height="768" alt="Verbindung Client Linux SSH_CLI-WIN-01_28_09_2026_00_14_01" src="https://github.com/user-attachments/assets/819d6e29-d69d-4449-861f-5ca25c278d9d" />
+
