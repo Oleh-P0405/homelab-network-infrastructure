@@ -46,6 +46,8 @@ Die Testumgebung befindet sich in einem isolierten VirtualBox NAT-Netzwerk (`Lab
 
 ## 💡 Troubleshooting & Gelöste Probleme
 
+<img width="1280" height="800" alt="VirtualBox_SRV-LNX-01_27_09_2026_14_58_39" src="https://github.com/user-attachments/assets/1dbddac3-bee2-4fa6-8c1e-112ac56b41dd" />
+
 * **Problem:** Manuelle Behebung von Netzwerkadapterproblemen unter Windows 10 während der Ersteinrichtung (OOBE).
   * **Lösung:** Nutzung des Befehls `OOBE\BYPASSNRO` in der Eingabeaufforderung (`Shift + F10`), um die Ersteinrichtung ohne Microsoft-Konto und aktives DHCP abzuschließen.
 * **Problem:** Eingehende Ping-Anfragen an den Windows Server wurden blockiert.
