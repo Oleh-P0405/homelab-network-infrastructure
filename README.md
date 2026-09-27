@@ -3,9 +3,9 @@ Aufbau einer virtuellen Testumgebung (Windows Server 2022, Ubuntu Server, Window
 
 # 🚀 Meine IT-Testumgebung: Aufbau einer virtuellen Netzwerk-Infrastruktur
 
-Dieses Projekt zeigt den schrittweisen Aufbau einer isolierten virtuellen Testumgebung auf Basis von **Oracle VirtualBox**. 
+### Das Ziel ist die praxisnahe Vorbereitung auf die Ausbildung zum `Fachinformatik für Systemintegration (FISI)`.
 
-Das Ziel ist die praxisnahe Vorbereitung auf die Ausbildung zum **Fachinformatik für Systemintegration (FISI)**.
+Dieses Projekt zeigt den schrittweisen Aufbau einer isolierten virtuellen Testumgebung auf Basis von **Oracle VirtualBox**. 
 
 ---
 
