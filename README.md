@@ -125,4 +125,25 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
    * Erfolgreiche Validierung auf `CLI-WIN-01` via `gpupdate /force` und automatischer Einbindung des Netzwerklaufwerks `Z:`.
    <img width="1024" height="768" alt="DISK Z_CLI-WIN-01_28_09_2026_11_00_56" src="https://github.com/user-attachments/assets/e3789527-5aad-4d79-af72-2881507e904d" />
 
+## 🛠️ Phase 3.3: Zugriffssteuerung & NTFS-Berechtigungen (SMB / Dateiserver)
+
+1. **Active Directory Sicherheitsgruppen (AGDLP-Prinzip):**
+   * Erstellung der globalen Sicherheitsgruppen **`GRP_IT_Users`** und **`GRP_HR_Users`** in der `Lab-OU`.
+   * Zuweisung des Domänen-Benutzers **Max Mustermann** (`mmustermann`) zur Gruppe `GRP_IT_Users`.
+
+2. **Ordnerstruktur & SMB-Freigabe:**
+   * Erstellung der Ordnerstruktur `C:\CompanyData` mit den Unterordnern `IT` und `HR` auf `SRV-WIN-01`.
+   * Freigabe des Hauptordners als SMB-Share **`CompanyData`** (`\\srv-win-01.lab.local\CompanyData`) mit Vollzugriff auf Freigabe-Ebene für authentifizierte Benutzer.
+
+3. **NTFS-Berechtigungen & Vererbung:**
+   * Deaktivierung der Vererbung auf den Unterordnern `IT` und `HR`.
+   * Konfiguration der NTFS-Zugriffssteuerungslisten (ACLs):
+     * Ordner `IT`: Vollzugriff/Ändern ausschließlich für **`GRP_IT_Users`**.
+     * Ordner `HR`: Vollzugriff/Ändern ausschließlich für **`GRP_HR_Users`**.
+
+4. **Validierung & Funktionstest:**
+   * Erfolgreicher Zugriff auf den Ordner `\\srv-win-01.lab.local\CompanyData\IT` über den Client `CLI-WIN-01` (Benutzer `mmustermann`).
+   * Verifikation der Zugriffsverweigerung (*Zugriff verweigert*) beim Versuch, den Ordner `HR` zu öffnen.
+   
+   <img width="1024" height="768" alt="Zugriff auf ordner_CLI-WIN-01_28_09_2026_16_13_06" src="https://github.com/user-attachments/assets/32523625-ff25-4e8c-8051-0153b912d173" />
 
