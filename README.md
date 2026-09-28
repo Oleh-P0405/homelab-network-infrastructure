@@ -105,3 +105,24 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
    * Erfolgreiche Fernverbindung via SSH über die Windows PowerShell von `CLI-WIN-01` aus (`ssh user@srv-lnx-01.lab.local`).
 <img width="1024" height="768" alt="Verbindung Client Linux SSH_CLI-WIN-01_28_09_2026_00_14_01" src="https://github.com/user-attachments/assets/819d6e29-d69d-4449-861f-5ca25c278d9d" />
 
+## 🛠️ Phase 3.2: Gruppenrichtlinien (GPO) & Network Drive Mapping
+
+1. **Active Directory Strukturierung (OU):**
+   * Erstellung der Organisationseinheit (OU) **`Lab-OU`** im Domänen-Stamm `lab.local`.
+   * Verschieben des Domänen-Benutzers **Max Mustermann** (`mmustermann`) in die neue OU zur gezielten Zuweisung von Gruppenrichtlinien.
+
+2. **Dateiserver & Netzwerktrennzeichen (SMB Share):**
+   * Erstellung und Freigabe des lokalen Ordners `C:\CompanyShare` als сетевой ресурс `\\srv-win-01.lab.local\CompanyShare`.
+   * Konfiguration der NTFS- und Freigabeberechtigungen für Domänen-Benutzer.
+
+3. **GPO-Konfiguration & Laufwerkszuordnung:**
+   * Erstellung des Gruppenrichtlinienobjekts (GPO) **`GPO_MapNetworkDrive`** und Verknüpfung mit der `Lab-OU`.
+   * Konfiguration der Laufwerkszuordnung unter *Benutzerkonfiguration -> Einstellungen -> Windows-Einstellungen -> Laufwerkszuordnungen*:
+     * **Aktion:** Aktualisieren / Ersetzen
+     * **Pfad:** `\\srv-win-01.lab.local\CompanyShare`
+     * **Laufwerksbuchstabe:** `Z:`
+     * **Option:** *Im Sicherheitskontext des angemeldeten Benutzers ausführen*.
+   * Erfolgreiche Validierung auf `CLI-WIN-01` via `gpupdate /force` und automatischer Einbindung des Netzwerklaufwerks `Z:`.
+   <img width="1024" height="768" alt="DISK Z_CLI-WIN-01_28_09_2026_11_00_56" src="https://github.com/user-attachments/assets/e3789527-5aad-4d79-af72-2881507e904d" />
+
+
