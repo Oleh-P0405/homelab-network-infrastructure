@@ -56,9 +56,9 @@ Die Testumgebung befindet sich in einem isolierten VirtualBox NAT-Netzwerk (`Lab
 ---
 
 ## 🎯 Nächste Schritte (Phase 2)
-- [ ] Einrichten von **Active Directory Domain Services (AD DS)** auf `SRV-WIN-01`.
-- [ ] Anbinden des Clients `CLI-WIN-01` an die Domäne.
-- [ ] Konfiguration von **DHCP-** und **DNS-Diensten**.
+- [x] Einrichten von **Active Directory Domain Services (AD DS)** auf `SRV-WIN-01`.
+- [x] Anbinden des Clients `CLI-WIN-01` an die Domäne.
+- [x] Konfiguration von **DHCP-** und **DNS-Diensten**.
 
 ## 🛠️ Phase 2: Active Directory DS, DNS, DHCP & Domain Join
 
@@ -88,9 +88,9 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
 ---
 
 ## 🎯 Nächste Schritte (Phase 3)
-- [ ] Integration des Linux-Servers (`SRV-LNX-01`) in die Domäneninfrastruktur oder Konfiguration von SSH/RSYNC.
-- [ ] Erstellung von Gruppenrichtlinien (**Group Policy Objects / GPO**) im Active Directory.
-- [ ] Einrichten von Netzwerkfreigaben (SMB / Dateiserver) mit Zugriffssteuerung.
+- [x] Integration des Linux-Servers (`SRV-LNX-01`) in die Domäneninfrastruktur oder Konfiguration von SSH/RSYNC.
+- [x] Erstellung von Gruppenrichtlinien (**Group Policy Objects / GPO**) im Active Directory.
+- [x] Einrichten von Netzwerkfreigaben (SMB / Dateiserver) mit Zugriffssteuerung.
 
 ## 🛠️ Phase 3: Linux-Integration & Fernverwaltung (SSH)
 
@@ -146,4 +146,40 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
    * Verifikation der Zugriffsverweigerung (*Zugriff verweigert*) beim Versuch, den Ordner `HR` zu öffnen.
    
    <img width="1024" height="768" alt="Zugriff auf ordner_CLI-WIN-01_28_09_2026_16_13_06" src="https://github.com/user-attachments/assets/32523625-ff25-4e8c-8051-0153b912d173" />
+   
+---
+
+## 🎯 Nächste Schritte (Phase 4)
+
+- [x] **Phase 4.1:** Integration des Linux-Servers (`SRV-LNX-01`) in die Domäne & Netzdienste (SMB / Nginx).
+- [ ] **Phase 4.2:** Erweiterte Gruppenrichtlinien (**Group Policy Objects / GPO**).
+- [ ] **Phase 4.3:** Projektabschluss, Gesamtvalidierung & Dokumentation.
+
+## 🛠️ Phase 4.1: Linux-Integration in die Domäne & Netzdienste (SMB / Nginx)
+
+1. **SMB/CIFS-Netzwerkfreigabe-Einbindung:**
+   * Installation der benötigten Paketwerkzeuge (`cifs-utils`, `smbclient`) auf `SRV-LNX-01`.
+   * Erstellung der geschützten Anmeldedatei `/etc/wincredentials` (Rechte `600`) mit den AD-Zugangsdaten des Benutzers **Max Mustermann** (`maxmustermann`).
+   * Erstellung des lokalen Mount-Punkts `/mnt/companydata`.
+   * Erfolgreiches Einbinden der Windows-Freigabe `//srv-win-01.lab.local/CompanyData` unter Verwendung von SMB 3.0.
+
+2. **Nginx-Webserver-Bereitstellung:**
+   * Installation und Aktivierung des Webservers **Nginx** auf `SRV-LNX-01`.
+   * Erstellung einer benutzerdefinierten Intranet-Startseite in `/var/www/html/index.html` (*"Willkommen im lab.local Intranet!"*).
+
+3. **DNS-Integration auf dem Domänencontroller (`SRV-WIN-01`):**
+   * Konfiguration eines **A-Records** in der DNS-Zone `lab.local`: `srv-lnx-01` -> `192.168.10.10`.
+   * Erstellung eines **CNAME-Alias (Pseudonym)**: `web.lab.local` -> `srv-lnx-01.lab.local`.
+
+4. **Validierung & Funktionstest:**
+   * Aufruf der Intranet-Webseite über den Browser auf dem Client `CLI-WIN-01` unter der Adresse **`http://web.lab.local`**.
+   * Verifikation der vollständigen Erreichbarkeit des Linux-Webservers über den DNS-Namen.
+   * Bestätigung des Lese- und Schreibzugriffs auf die eingebundenen SMB-Ordner (`IT` / `HR`) auf dem Linux-System.
+
+5. **Troubleshooting & Fehlerbehebung:**
+   * **`NT_STATUS_LOGON_FAILURE` / Fehler -13:** Behebung durch Korrektur des SAM-Benutzernamens auf `maxmustermann` in `/etc/wincredentials`.
+   * **`could not resolve address`:** Behebung durch explizite Konfiguration des DNS-Servers (`192.168.10.20`) in `/etc/resolv.conf`.
+
+<img width="1024" height="768" alt="web lab local2_CLI-WIN-01_01_11_2026_14_50_08" src="https://github.com/user-attachments/assets/215b36c5-398e-4ace-a23b-1d073007e4bb" />
+
 
