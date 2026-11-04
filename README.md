@@ -152,7 +152,7 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
 ## 🎯 Nächste Schritte (Phase 4)
 
 - [x] **Phase 4.1:** Integration des Linux-Servers (`SRV-LNX-01`) in die Domäne & Netzdienste (SMB / Nginx).
-- [ ] **Phase 4.2:** Erweiterte Gruppenrichtlinien (**Group Policy Objects / GPO**).
+- [x] **Phase 4.2:** Erweiterte Gruppenrichtlinien (**Group Policy Objects / GPO**).
 - [ ] **Phase 4.3:** Projektabschluss, Gesamtvalidierung & Dokumentation.
 
 ## 🛠️ Phase 4.1: Linux-Integration in die Domäne & Netzdienste (SMB / Nginx)
@@ -181,5 +181,29 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
    * **`could not resolve address`:** Behebung durch explizite Konfiguration des DNS-Servers (`192.168.10.20`) in `/etc/resolv.conf`.
 
 <img width="1024" height="768" alt="web lab local2_CLI-WIN-01_01_11_2026_14_50_08" src="https://github.com/user-attachments/assets/215b36c5-398e-4ace-a23b-1d073007e4bb" />
+
+## 🛡️ Phase 4.2: Erweiterte Gruppenrichtlinien (GPO - Group Policy Objects)
+
+1. **Erstellung und Konfiguration der GPO (`Sec_Policy_LegalNotice`):**
+  - Erstellung eines neuen GPO-Objekts `Sec_Policy_LegalNotice` in der **Gruppenrichtlinien-Verwaltung (`gpmc.msc`)**.
+  - Verknüpfung der Richtlinie mit der Ziel-Organisationseinheit **`Lab-OU`**.
+  - Konfiguration der Computerkonfiguration (*Computer Configuration -> Policies -> Windows Settings -> Security Settings -> Local Policies -> Security Options*):
+    - **Interaktive Anmeldung: Titel des Meldungsfelds:** `Achtung - Firmennetzwerk lab.local`
+    - **Interaktive Anmeldung: Text für Benutzer:** `Unbefugter Zugriff untersagt. Alle Aktivitäten werden überwacht.`
+
+2. **Troubleshooting & OU-Strukturkorrektur:**
+  - **Problem:** Die Richtlinie wurde nach initialer Erstellung nicht auf dem Client angewendet.
+  - **Ursache:** Der Client-PC befindet sich im Standard-Container `Computers`, auf den keine OU-spezifischen GPOs wirken, und wies eine abweichende Namenskonvention auf.
+  - **Lösung:** 
+    1. Umbenennung des Client-Computers in den Standardnamen **`CLI-WIN-01`** via `sysdm.cpl`.
+    2. Verschieben des Computer-Objekts `CLI-WIN-01` aus dem `Computers`-Container in die **`Lab-OU`** via Active Directory-Benutzer und -Computer (`dsa.msc`).
+
+3. **Validierung & Funktionstest auf `CLI-WIN-01`:**
+  - Ausführung von `gpupdate /force` in einer administrativen Eingabeaufforderung.
+  - Verifikation der angewendeten Richtlinien via `gpresult /r /scope computer` sowie `rsop.msc`.
+  - Erfolgreiche Bestätigung: Beim Neustart des Systems erscheint vor der Benutzeranmeldung der konfigurierte rechtliche Sicherheitshinweis (Legal Notice) im Pop-up-Fenster.
+
+<img width="1024" height="768" alt="GPO Phase 4 2_CLI-WIN-01_04_11_2026_15_03_18" src="https://github.com/user-attachments/assets/0f0fef57-ee23-4556-9811-0597c624bde4" />
+
 
 
