@@ -205,5 +205,16 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
 
 <img width="1024" height="768" alt="GPO Phase 4 2_CLI-WIN-01_04_11_2026_15_03_18" src="https://github.com/user-attachments/assets/0f0fef57-ee23-4556-9811-0597c624bde4" />
 
+4. **Benutzerbezogene GPO (`User_Restrict_ControlPanel`):**
+  - Erstellung eines neuen GPO-Objekts `User_Restrict_ControlPanel` in der **Gruppenrichtlinien-Verwaltung (`gpmc.msc`)**     und Verknüpfung mit der **`Lab-OU`**.
+  - Konfiguration der Benutzerkonfiguration (*Benutzerkonfiguration -> Richtlinien -> Administrative Vorlagen ->              Systemsteuerung*):
+    - **Zugriff auf Systemsteuerung und PC-Einstellungen nicht zulassen:** `Aktiviert` (Sperrt zentral den Zugriff auf die    Systemsteuerung und die Windows-Einstellungen für Domänenbenutzer).
+  - **Validierung & Funktionstest auf `CLI-WIN-01`:**
+    - Ausführung von `gpupdate /force` unter dem Benutzerkonto `Max Mustermann` (`mmustermann`).
+    - **Erfolgreiche Bestätigung:** Der Versuch, die Systemsteuerung oder die Windows-Einstellungen (`Win + I`) zu öffnen,    wird erfolgreich mit einer Systembeschränkungsmeldung blockiert.
+
+    <img width="1024" height="768" alt="GPO_Teil2_Beschränkungen_CLI-WIN-01_13_11_2026_11_57_22" src="https://github.com/user-attachments/assets/eb521c2a-9676-4c0f-a835-1028e86da5fe" />
+
+
 
 
