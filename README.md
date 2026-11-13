@@ -157,7 +157,7 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
 
 - [x] **Phase 4.1:** Integration des Linux-Servers (`SRV-LNX-01`) in die Domäne & Netzdienste (SMB / Nginx).
 - [x] **Phase 4.2:** Erweiterte Gruppenrichtlinien (**Group Policy Objects / GPO**).
-- [ ] **Phase 4.3:** Projektabschluss, Gesamtvalidierung & Dokumentation.
+- [x] **Phase 4.3:** Projektabschluss, Gesamtvalidierung & Dokumentation.
 
 ## 🛠️ Phase 4.1: Linux-Integration in die Domäne & Netzdienste (SMB / Nginx)
 
@@ -262,9 +262,30 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
 
 ---
 
-## Fazit & Lessons Learned
+# Fazit & Lessons Learned
 
 In diesem Projekt wurde eine vollständige, realitätsnahe Unternehmensinfrastruktur auf Basis von **Windows Server (Active Directory & DNS)** sowie **Windows- und Linux-Clients** von Grund auf aufgebaut, abgesichert und dokumentiert.
+
+### 📋 Zusammenfassung der Projektschritte
+
+* **Phase 1: Netzwerk & Grundlagen (`SRV-WIN-01` & `CLI-WIN-01`)**
+  - [x] Grundkonfiguration der statischen IP-Adressen und Netzwerkinfrastruktur.
+  - [x] Namensauflösung und funktionierende Internet-Anbindung über DNS-Forwarder.
+
+* **Phase 2: Active Directory & DNS-Infrastruktur**
+  - [x] Einrichten von **Active Directory Domain Services (AD DS)** auf `SRV-WIN-01`.
+  - [x] Anbinden des Clients `CLI-WIN-01` an die Domäne.
+  - [x] Konfiguration von **DHCP-** und **DNS-Diensten**.
+
+* **Phase 3: Gruppenrichtlinien (GPOs) & Sicherheit / Linux-Integration & Fernverwaltung (SSH)**
+  - [x] Integration des Linux-Servers (`SRV-LNX-01`) in die Domäneninfrastruktur oder Konfiguration von SSH/RSYNC.
+  - [x] Erstellung von Gruppenrichtlinien (**Group Policy Objects / GPO**) im Active Directory.
+  - [x] Einrichten von Netzwerkfreigaben (SMB / Dateiserver) mit Zugriffssteuerung.
+
+* **Phase 4: Gesamtvalidierung & Projektabschluss**
+  - [x] **Phase 4.1:** Integration des Linux-Servers (`SRV-LNX-01`) in die Domäne & Netzdienste (SMB / Nginx).
+  - [x] **Phase 4.2:** Erweiterte Gruppenrichtlinien (**Group Policy Objects / GPO**).
+  - [x] **Phase 4.3:** Projektabschluss, Gesamtvalidierung & Dokumentation.
 
 ### Wichtigste Erkenntnisse (Lessons Learned)
 * **DNS als Fundament von Active Directory:** Eine fehlerfreie Namensauflösung (AD-integrierte Zonen, korrekte Forwarder und dynamische SRV-Einträge) ist zwingende Voraussetzung für den Domänenbeitritt und die Replikation. Mit `dcdiag /test:dns` lassen sich Konfigurationsfehler gezielt isolieren und beheben.
