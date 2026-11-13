@@ -1,3 +1,7 @@
+> [!NOTE]
+> 💻 **Projekt erstellt von OLEH PONOCHOVNYI ** | *IT-Systemadministration Lab*
+---
+
 # homelab-network-infrastructure
 Aufbau einer virtuellen Testumgebung (Windows Server 2022, Ubuntu Server, Windows 10) in VirtualBox
 
@@ -256,3 +260,16 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
 
 *<img width="1024" height="768" alt="Final teil4_SRV-WIN-01_13_11_2026_13_06_07" src="https://github.com/user-attachments/assets/ed7d5ce4-b74b-4ecc-b24c-b95c0dc1584d" />*
 
+---
+
+## Fazit & Lessons Learned
+
+In diesem Projekt wurde eine vollständige, realitätsnahe Unternehmensinfrastruktur auf Basis von **Windows Server (Active Directory & DNS)** sowie **Windows- und Linux-Clients** von Grund auf aufgebaut, abgesichert und dokumentiert.
+
+### Wichtigste Erkenntnisse (Lessons Learned)
+* **DNS als Fundament von Active Directory:** Eine fehlerfreie Namensauflösung (AD-integrierte Zonen, korrekte Forwarder und dynamische SRV-Einträge) ist zwingende Voraussetzung für den Domänenbeitritt und die Replikation. Mit `dcdiag /test:dns` lassen sich Konfigurationsfehler gezielt isolieren und beheben.
+* **Strukturierte OU-Planung:** Gruppenrichtlinien (GPOs) wirken nur dann zuverlässig, wenn Computer- und Benutzerobjekte sauber in den vorgesehenen Organisationseinheiten (`Lab-OU`) statt im Standard-Container `Computers` verwaltet werden.
+* **Trennung von Computer- und Benutzerkonfiguration:** Sicherheitsrichtlinien wie das Anmeldebanner (`Sec_Policy_LegalNotice`) greifen auf Maschinenebene beim Systemstart, während Einschränkungen wie die Sperrung der Systemsteuerung (`User_Restrict_ControlPanel`) gezielt auf Benutzerebene angewendet werden.
+
+---
+> 💻 **Projekt erstellt von OLEH PONOCHOVNYI ** | *IT-Systemadministration Lab*
