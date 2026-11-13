@@ -215,6 +215,44 @@ Im Rahmen der zweiten Phase wurde der Server `SRV-WIN-01` als Domänencontroller
 
     <img width="1024" height="768" alt="GPO_Teil2_Beschränkungen_CLI-WIN-01_13_11_2026_11_57_22" src="https://github.com/user-attachments/assets/eb521c2a-9676-4c0f-a835-1028e86da5fe" />
 
+✅ Phase 4.3: Gesamtvalidierung & Projektabschluss
+
+1. DNS- & Active Directory-Diagnose (SRV-WIN-01):
+
+   * Überprüfung der Domänen- und DNS-Integrität mittels dcdiag /test:dns.
+
+   * DNS-Troubleshooting & Optimierung:
+
+   * Problem: Initiale DNS-Tests meldeten Fehler bei den Untertests Forwarders (Forw) und Record Registration (RReg).
+
+   * Lösung: Konfiguration eines externen DNS-Forwarders (8.8.8.8) im DNS-Manager (dnsmgmt.msc), Anpassung der lokalen IPv4-DNS-Bindung auf SRV-WIN-01 (ncpa.cpl) sowie Neuregistrierung der DNS-Einträge via ipconfig /flushdns, ipconfig /registerdns und Neustart des Dienstes Netlogon. - <img width="1024" height="768" alt="FInal teil3_SRV-WIN-01_13_11_2026_12_26_46" src="https://github.com/user-attachments/assets/eb8e63ec-606b-440f-83f8-a227067a1c69" />
 
 
+   * Ergebnis: Bestätigung durch lab.local hat den Test DNS bestanden (alle domänenrelevanten Untertests erfolgreich mit         PASS abgeschlossen).
+   *<img width="1024" height="768" alt="Final teil4_SRV-WIN-01_13_11_2026_13_06_07" src="https://github.com/user-attachments/assets/c8775740-b379-4225-8239-32e8ddaa7262" />*
+
+
+2. End-to-End Client- & GPO-Validierung (CLI-WIN-01):
+
+   * Verifikation der Namensauflösung und Konnektivität zum Domain Controller (nslookup lab.local, ping SRV-WIN-01.lab.local).
+
+   * Bestätigung der korrekten OU-Zugehörigkeit von CLI-WIN-01 und Max Mustermann (mmustermann) innerhalb der Lab-OU.
+
+   * Überprüfung der angewendeten Gruppenrichtlinien via gpresult /r:
+
+   * Sec_Policy_LegalNotice: Anmeldebanner wird vor jedem System-Login erzwungen.
+
+   * User_Restrict_ControlPanel: Zugriff auf Systemsteuerung und Windows-Einstellungen ist für Domänenbenutzer gesperrt.
+
+   *<img width="1024" height="768" alt="Final Teil1_CLI-WIN-01_13_11_2026_12_10_30" src="https://github.com/user-attachments/assets/b97468d5-cf9e-4068-a4c9-b3932ba5251c" />*
+   *<img width="1024" height="768" alt="Finall teil2_CLI-WIN-01_13_11_2026_12_16_41" src="https://github.com/user-attachments/assets/3a90a819-42c1-48ff-aa24-13b285399ccc" />*
+
+
+3. Projektabschluss:
+
+   * Vollständiger Abschluss und Dokumentation aller Projektphasen (Netzwerk-Setup, Active Directory & DNS, GPO-Härtung sowie Client-Integration).
+
+   * Die Laborumgebung lab.local ist fehlerfrei validiert und einsatzbereit.
+
+*<img width="1024" height="768" alt="Final teil4_SRV-WIN-01_13_11_2026_13_06_07" src="https://github.com/user-attachments/assets/ed7d5ce4-b74b-4ecc-b24c-b95c0dc1584d" />*
 
