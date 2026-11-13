@@ -1,5 +1,5 @@
 > [!NOTE]
-> 💻 **Projekt erstellt von OLEH PONOCHOVNYI ** | *IT-Systemadministration Lab*
+> 💻 **Projekt erstellt von OLEH PONOCHOVNYI (https://github.com/Oleh-P0405)** | *IT-Systemadministration Lab*
 ---
 
 # homelab-network-infrastructure
@@ -272,4 +272,5 @@ In diesem Projekt wurde eine vollständige, realitätsnahe Unternehmensinfrastru
 * **Trennung von Computer- und Benutzerkonfiguration:** Sicherheitsrichtlinien wie das Anmeldebanner (`Sec_Policy_LegalNotice`) greifen auf Maschinenebene beim Systemstart, während Einschränkungen wie die Sperrung der Systemsteuerung (`User_Restrict_ControlPanel`) gezielt auf Benutzerebene angewendet werden.
 
 ---
-> 💻 **Projekt erstellt von OLEH PONOCHOVNYI ** | *IT-Systemadministration Lab*
+> [!NOTE]
+> 💻 **Projekt erstellt von OLEH PONOCHOVNYI (https://github.com/Oleh-P0405)** | *IT-Systemadministration Lab*
