@@ -3,7 +3,7 @@
 ---
 
 # homelab-network-infrastructure
-Aufbau einer virtuellen Testumgebung (Windows Server 2022, Ubuntu Server, Windows 10) in VirtualBox
+Aufbau einer virtuellen Testumgebung (Windows Server 2022, Ubuntu (Linux) Server, Windows 10) in VirtualBox
 
 # 🚀 Meine IT-Testumgebung: Aufbau einer virtuellen Netzwerk-Infrastruktur
 
